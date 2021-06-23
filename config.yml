@@ -1,4 +1,4 @@
-jtype: MyDummyExecutor
+jtype: LaserEncoder
 metas:
   py_modules:
-    - MODULE_NAME.py
+    - laser_encoder.py

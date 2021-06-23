@@ -5,7 +5,7 @@ RUN apt-get -y update && apt-get install -y git
 
 # install requirements before copying the workspace
 COPY requirements.txt /requirements.txt
-RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt && python -m laserembeddings download-models
 
 # setup the workspace
 COPY . /workspace

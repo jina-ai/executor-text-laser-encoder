@@ -1,12 +1,10 @@
-# 📝 PLEASE READ [THE GUIDELINES](.github/GUIDELINES.md) BEFORE STARTING.
-
-# 🏗️ PLEASE CHECK OUT [STEP-BY-STEP](.github/STEP_BY_STEP.md)
-
-----
-
 # ✨ MyDummyExecutor
 
-**MyDummyExecutor** is a class that ...
+# LaserEncoder
+
+**LaserEncoder** is a encoder based on Facebook Research's LASER (Language-Agnostic SEntence Representations) to compute multilingual sentence embeddings.
+
+It encodes `Document` content from an 1d array of string in size `B` into an ndarray in size `B x D`.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -21,7 +19,10 @@
 
 ## 🌱 Prerequisites
 
-Some conditions to fulfill before running the executor
+```bash
+python -m laserembeddings download-models
+```
+
 
 ## 🚀 Usages
 
