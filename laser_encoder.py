@@ -2,9 +2,10 @@ __copyright__ = "Copyright (c) 2020-2021 Jina AI Limited. All rights reserved."
 __license__ = "Apache-2.0"
 
 from typing import Optional, List, Any, Iterable
-import numpy as np
+
 import torch
 from jina import Executor, DocumentArray, requests
+from laserembeddings import Laser
 
 
 def _batch_generator(data: List[Any], batch_size: int):
@@ -48,7 +49,7 @@ class LaserEncoder(Executor):
             **kwargs,
     ):
         super().__init__(*args, **kwargs)
-        from laserembeddings import Laser
+
         self._path_to_bpe_codes = path_to_bpe_codes or Laser.DEFAULT_BPE_CODES_FILE
         self._path_to_bpe_vocab = path_to_bpe_vocab or Laser.DEFAULT_BPE_VOCAB_FILE
         self._path_to_encoder = path_to_encoder or Laser.DEFAULT_ENCODER_FILE
@@ -57,7 +58,6 @@ class LaserEncoder(Executor):
         self.default_traversal_paths = default_traversal_paths
         self.language = language.lower()
 
-        from laserembeddings import Laser
         self.model = Laser(
             bpe_codes=self._path_to_bpe_codes,
             bpe_vocab=self._path_to_bpe_vocab,
