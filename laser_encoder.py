@@ -43,7 +43,7 @@ class LaserEncoder(Executor):
             path_to_encoder: Optional[str] = None,
             on_gpu: bool = False,
             default_batch_size: int = 32,
-            default_traversal_paths: List[str] = 'r',
+            default_traversal_paths: List[str] = ['r'],
             language: str = 'en',
             *args,
             **kwargs,
