@@ -27,6 +27,9 @@ class LaserEncoder(Executor):
         Defaults to Laser.DEFAULT_BPE_VOCAB_FILE.
     :param path_to_encoder: path to the encoder from Laser.
         Defaults to Laser.DEFAULT_ENCODER_FILE.
+    :param default_batch_size: size of each batch
+    :param default_traversal_paths: traversal path of the Documents, (e.g. 'r', 'c')
+    :param on_gpu: set to True if using GPU
     :param language: language of the text. Defaults to english(en).
     :param args:  Additional positional arguments
     :param kwargs: Additional keyword arguments
