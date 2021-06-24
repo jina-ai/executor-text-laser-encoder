@@ -2,6 +2,7 @@ __copyright__ = "Copyright (c) 2020-2021 Jina AI Limited. All rights reserved."
 __license__ = "Apache-2.0"
 
 from jina import Flow, Document
+from jinahub.encoder.laser_encoder import LaserEncoder
 
 
 def data_generator(num_docs):
@@ -13,8 +14,8 @@ def data_generator(num_docs):
 
 def test_use_in_flow():
     with Flow.load_config('flow.yml') as flow:
-        data = flow.post(on='/encode', inputs=data_generator(5))
-        docs = data[0].docs
+        resp = flow.post(on='/encode', inputs=data_generator(5), return_results=True)
+        docs = resp[0].docs
         assert len(docs) == 5
         for doc in docs:
             assert doc.embedding.shape == (1024,)
