@@ -15,7 +15,9 @@ source .venv/bin/activate
 pip install wheel
 pip install -r tests/requirements.txt
 pip install .
-python -m laserembeddings download-models
+export CACHE_DIR=$(python -c 'from jina.hubble import JINA_HUB_CACHE_DIR; print(JINA_HUB_CACHE_DIR)')/laser_encoder
+mkdir $CACHE_DIR
+python -m laserembeddings download-models $CACHE_DIR
 pytest -s -v tests/
 local_exit_code=$?
 deactivate
