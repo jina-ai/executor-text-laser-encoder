@@ -1,12 +1,8 @@
-# 📝 PLEASE READ [THE GUIDELINES](.github/GUIDELINES.md) BEFORE STARTING.
+# LaserEncoder
 
-# 🏗️ PLEASE CHECK OUT [STEP-BY-STEP](.github/STEP_BY_STEP.md)
+**LaserEncoder** is a encoder based on Facebook Research's LASER (Language-Agnostic SEntence Representations) to compute multilingual sentence embeddings.
 
-----
-
-# ✨ MyDummyExecutor
-
-**MyDummyExecutor** is a class that ...
+It encodes `Document` content from an 1d array of string in size `B` into an ndarray in size `B x D`.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -21,19 +17,21 @@
 
 ## 🌱 Prerequisites
 
-Some conditions to fulfill before running the executor
+```bash
+python -m laserembeddings download-models
+```
 
 ## 🚀 Usages
 
 ### 🚚 Via JinaHub
 
 #### using docker images
-Use the prebuilt images from JinaHub in your python codes, 
+Use the prebuilt images from JinaHub in your python codes. The input language can be configured with `language`. The full list of possible values can be found at [LASER](https://github.com/facebookresearch/LASER#supported-languages) with the language code ([ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)) 
 
 ```python
 from jina import Flow
 	
-f = Flow().add(uses='jinahub+docker://MyDummyExecutor')
+f = Flow().add(uses='jinahub+docker://laser-encoder', override_with={'language': 'en'})
 ```
 
 or in the `.yml` config.
@@ -42,7 +40,7 @@ or in the `.yml` config.
 jtype: Flow
 pods:
   - name: encoder
-    uses: 'jinahub+docker://MyDummyExecutor'
+    uses: 'jinahub+docker://laser-encoder'
 ```
 
 #### using source codes
@@ -51,7 +49,7 @@ Use the source codes from JinaHub in your python codes,
 ```python
 from jina import Flow
 	
-f = Flow().add(uses='jinahub://MyDummyExecutor')
+f = Flow().add(uses='jinahub://laser-encoder')
 ```
 
 or in the `.yml` config.
@@ -60,25 +58,25 @@ or in the `.yml` config.
 jtype: Flow
 pods:
   - name: encoder
-    uses: 'jinahub://MyDummyExecutor'
+    uses: 'jinahub://laser-encoder'
 ```
 
 
 ### 📦️ Via Pypi
 
-1. Install the `jinahub-MY-DUMMY-EXECUTOR` package.
+1. Install the package.
 
 	```bash
-	pip install git+https://github.com/jina-ai/EXECUTOR_REPO_NAME.git
+	pip install git+https://github.com/jina-ai/executor-text-laser-encoder.git
 	```
 
-1. Use `jinahub-MY-DUMMY-EXECUTOR` in your code
+1. Use `LaserEncoder` in your code
 
 	```python
 	from jina import Flow
-	from jinahub.SUB_PACKAGE_NAME.MODULE_NAME import MyDummyExecutor
+	from jinahub.encoder.laser_encoder import LaserEncoder
 	
-	f = Flow().add(uses=MyDummyExecutor)
+	f = Flow().add(uses=LaserEncoder)
 	```
 
 
@@ -87,42 +85,34 @@ pods:
 1. Clone the repo and build the docker image
 
 	```shell
-	git clone https://github.com/jina-ai/EXECUTOR_REPO_NAME.git
-	cd EXECUTOR_REPO_NAME
-	docker build -t my-dummy-executor-image .
+	git clone https://github.com/jina-ai/executor-text-laser-encoder.git
+	cd executor-text-laser-encoder
+	docker build -t executor-text-laser-encoder .
 	```
 
-1. Use `my-dummy-executor-image` in your codes
+1. Use `executor-text-laser-encoder` in your codes
 
 	```python
 	from jina import Flow
 	
-	f = Flow().add(uses='docker://my-dummy-executor-image:latest')
+	f = Flow().add(uses='docker://executor-text-laser-encoder:latest')
 	```
-	
+ 
+## 🎉 Example:
 
-## 🎉️ Example 
-
+Here is an example usage of the **LaserEncoder**.
 
 ```python
 from jina import Flow, Document
-
-f = Flow().add(uses='jinahub+docker://MyDummyExecutor')
-
+f = Flow().add(uses='jinahub+docker://LaserEncoder')
 with f:
-    resp = f.post(on='foo', inputs=Document(), return_resutls=True)
-	print(f'{resp}')
+    resp = f.post(on='foo', inputs=Document(text='hello Jina'), return_resutls=True)
 ```
 
 ### Inputs 
 
-`Document` with `blob` of the shape `256`.
+`Document` with `text` to be encoded.
 
 ### Returns
 
-`Document` with `embedding` fields filled with an `ndarray` of the shape `embedding_dim` (=128, by default) with `dtype=nfloat32`.
-
-
-## 🔍️ Reference
-- Some reference
-
+`Document` with `embedding` fields filled with an `ndarray`  with `dtype=nfloat32`.
