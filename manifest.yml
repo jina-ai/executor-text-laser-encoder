@@ -5,4 +5,4 @@ description: encodes data from an 1d array of string in size `B` into an ndarray
 author: Jina AI Dev-Team (dev-team@jina.ai)
 url: https://github.com/jina-ai/executor-text-laser-encoder
 avatar: https://avatars.githubusercontent.com/u/60539444?s=200&v=4
-keywords: [nlp, encoder, LASER, multilingual]
+keywords: [text, encoder, laser, multilingual]
