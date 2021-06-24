@@ -31,7 +31,7 @@ Use the prebuilt images from JinaHub in your python codes. The input language ca
 ```python
 from jina import Flow
 	
-f = Flow().add(uses='jinahub+docker://LaserEncoder', override_with={'language': 'en'})
+f = Flow().add(uses='jinahub+docker://laser-encoder', override_with={'language': 'en'})
 ```
 
 or in the `.yml` config.
@@ -40,7 +40,7 @@ or in the `.yml` config.
 jtype: Flow
 pods:
   - name: encoder
-    uses: 'jinahub+docker://LaserEncoder'
+    uses: 'jinahub+docker://laser-encoder'
 ```
 
 #### using source codes
@@ -49,7 +49,7 @@ Use the source codes from JinaHub in your python codes,
 ```python
 from jina import Flow
 	
-f = Flow().add(uses='jinahub://LaserEncoder')
+f = Flow().add(uses='jinahub://laser-encoder')
 ```
 
 or in the `.yml` config.
@@ -58,7 +58,7 @@ or in the `.yml` config.
 jtype: Flow
 pods:
   - name: encoder
-    uses: 'jinahub://LaserEncoder'
+    uses: 'jinahub://laser-encoder'
 ```
 
 
