@@ -106,7 +106,7 @@ Here is an example usage of the **LaserEncoder**.
 from jina import Flow, Document
 f = Flow().add(uses='jinahub+docker://LaserEncoder')
 with f:
-    resp = f.post(on='foo', inputs=Document(text='hello Jina'), return_resutls=True)
+    resp = f.post(on='foo', inputs=Document(text='hello Jina'), return_results=True)
 ```
 
 ### Inputs 
