@@ -1,2 +1,2 @@
 laserembeddings[ja,zh]==1.1.1
-jina[hub, http]==2.0.0rc9
+jina[hub]==2.0.0
