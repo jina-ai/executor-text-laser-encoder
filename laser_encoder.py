@@ -6,7 +6,6 @@ import os
 
 import torch
 from jina import Executor, DocumentArray, requests
-from jina.hubble import JINA_HUB_CACHE_DIR
 from laserembeddings import Laser
 
 
@@ -40,9 +39,9 @@ class LaserEncoder(Executor):
 
     def __init__(
             self,
-            path_to_bpe_codes: Optional[str] = os.path.join(JINA_HUB_CACHE_DIR, 'laser_encoder', '93langs.fcodes'),
-            path_to_bpe_vocab: Optional[str] = os.path.join(JINA_HUB_CACHE_DIR, 'laser_encoder', '93langs.fvocab'),
-            path_to_encoder: Optional[str] = os.path.join(JINA_HUB_CACHE_DIR, 'laser_encoder', 'bilstm.93langs.2018-12-26.pt'),
+            path_to_bpe_codes: Optional[str] = None,
+            path_to_bpe_vocab: Optional[str] = None,
+            path_to_encoder: Optional[str] = None,
             on_gpu: bool = False,
             default_batch_size: int = 32,
             default_traversal_paths: List[str] = ['r'],
@@ -55,11 +54,6 @@ class LaserEncoder(Executor):
         self._path_to_bpe_codes = path_to_bpe_codes
         self._path_to_bpe_vocab = path_to_bpe_vocab
         self._path_to_encoder = path_to_encoder
-        cache_dir = os.path.join(JINA_HUB_CACHE_DIR, 'laser_encoder')
-        if not os.path.exists(cache_dir):
-            os.makedirs(cache_dir)
-        # mount the volume in docker
-        # download the models to the default place
         self.on_gpu = on_gpu
         self.default_batch_size = default_batch_size
         self.default_traversal_paths = default_traversal_paths
