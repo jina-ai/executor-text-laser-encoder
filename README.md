@@ -21,6 +21,16 @@ It encodes `Document` content from an 1d array of string in size `B` into an nda
 python -m laserembeddings download-models
 ```
 
+To install the dependencies locally run 
+```
+pip install . 
+pip install -r tests/requirements.txt
+```
+To verify the installation works:
+```
+pytest tests
+```
+
 ## 🚀 Usages
 
 ### 🚚 Via JinaHub
