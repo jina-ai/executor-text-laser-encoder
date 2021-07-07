@@ -1,2 +1,3 @@
 laserembeddings[ja,zh]==1.1.1
-jina[hub]==2.0.0
+jina[hub]==2.0.3
+jina-commons @ git+https://github.com/jina-ai/jina-commons.git#egg=jina-commons
