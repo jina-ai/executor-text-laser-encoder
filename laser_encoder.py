@@ -39,7 +39,7 @@ class LaserEncoder(Executor):
             path_to_encoder: Optional[str] = None,
             on_gpu: bool = False,
             default_batch_size: int = 32,
-            default_traversal_paths: Optional[List[str]] = None,
+            default_traversal_paths: str = None,
             language: str = 'en',
             *args,
             **kwargs,
@@ -51,7 +51,7 @@ class LaserEncoder(Executor):
         self._path_to_encoder = path_to_encoder
         self.on_gpu = on_gpu
         self.default_batch_size = default_batch_size
-        self.default_traversal_paths = default_traversal_paths or ['r']
+        self.default_traversal_paths = default_traversal_paths or 'r'
         self.language = language.lower()
 
         self.model = Laser(
@@ -70,7 +70,7 @@ class LaserEncoder(Executor):
         :param docs: documents sent to the encoder. The docs must have text.
         :param parameters: dictionary to define the `traversal_path` and the `batch_size`.
             For example,
-            `parameters={'traversal_paths': ['r'], 'batch_size': 10}`
+            `parameters={'traversal_paths': 'r', 'batch_size': 10}`
             will set the parameters for traversal_paths, batch_size and that are actually used
         """
         if docs:
