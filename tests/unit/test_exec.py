@@ -35,7 +35,7 @@ def test_traversal_path():
     encoder = LaserEncoder()
     encoder.encode(docs, parameters={'batch_size': 10, 'traversal_paths': 'c'})
 
-    for path, count in [['r', 0], ['c', 3], ['cc', 1]]:
+    for path, count in [['r', 1], ['c', 3], ['cc', 0]]:
         assert len(docs.traverse_flat(path).get_attributes('embedding')) == count
         if count > 0:
             assert docs.traverse_flat(path).get_attributes('embedding')[0].shape == (1024,)
